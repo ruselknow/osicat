@@ -1,2 +1,2 @@
 # osicat
-Git hooks made easy 🐈 meow. 
+.net core tool for manage git hooks 🐈 meow. 
