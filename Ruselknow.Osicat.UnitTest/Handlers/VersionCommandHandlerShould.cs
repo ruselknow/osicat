@@ -18,13 +18,14 @@ namespace Ruselknow.Osicat.UnitTest.Handlers
         }
 
         [Fact]
-        public void ThrowNotImplementException()
+        public void ReturnTrue()
         {
             //act
-            Func<Task<bool>> act = () => _commandHandler.Handle(new VersionCommand(), CancellationToken.None);
+            var result = _commandHandler.Handle(new VersionCommand(), CancellationToken.None);
 
             //assert
-            act.Should().ThrowAsync<NotImplementedException>();
+            result.Should().NotBeNull();
+            result.Result.Should().BeTrue();
         }
     }
 }

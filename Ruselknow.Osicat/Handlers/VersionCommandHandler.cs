@@ -3,6 +3,7 @@ using Ruselknow.Osicat.Commands;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Ruselknow.Osicat.Handlers
 {
@@ -10,7 +11,22 @@ namespace Ruselknow.Osicat.Handlers
     {
         public Task<bool> Handle(VersionCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Console.WriteLine(GetVersion());
+                return Task.FromResult(true);
+            }
+            catch
+            {
+                return Task.FromResult(false);
+            }
+        }
+
+        private static string GetVersion()
+        {
+            return Assembly.GetEntryAssembly()!
+                .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                ?.InformationalVersion;
         }
     }
 }
