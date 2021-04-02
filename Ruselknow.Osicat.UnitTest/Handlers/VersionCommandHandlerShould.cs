@@ -1,9 +1,7 @@
 using FluentAssertions;
 using Ruselknow.Osicat.Commands;
 using Ruselknow.Osicat.Handlers;
-using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Ruselknow.Osicat.UnitTest.Handlers
