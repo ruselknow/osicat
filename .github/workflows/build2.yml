@@ -9,6 +9,7 @@ on:
 env:
   dotnet: 5.0.100
   sonar_project_key: ruselknow_osicat
+  sonar_organization: ruselknow
 
 jobs:
   build:
@@ -39,7 +40,7 @@ jobs:
       - name: install sonar-scanner
         run: dotnet tool install --global dotnet-sonarscanner
       - name: scanner begin
-        run: dotnet sonarscanner begin /k:"${{ env.sonar_project_key }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner begin /k:"${{ env.sonar_project_key }}" /o:"${{ env.sonar_organization }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       - name: scanner build
         run: dotnet build
       - name: scanner test
