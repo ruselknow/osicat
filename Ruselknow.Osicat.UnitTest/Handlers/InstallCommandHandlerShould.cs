@@ -21,7 +21,7 @@ namespace Ruselknow.Osicat.UnitTest.Handlers
         public void ThrowNotImplementException()
         {
             //act
-            Func<Task<bool>> act = () => _commandHandler.Handle(new InstallCommand(), CancellationToken.None);
+            Func<Task<bool>> act = () => _commandHandler.Handle(new InstallCommand(null), CancellationToken.None);
 
             //assert
             act.Should().ThrowAsync<NotImplementedException>();

@@ -12,7 +12,8 @@ namespace Ruselknow.Osicat
         {
             if (args.TryGetValue("install", out var install) && install.IsTrue)
             {
-                return new InstallCommand();
+                args.TryGetValue("<dir>", out var dir);
+                return new InstallCommand(dir?.ToString());
             }
 
             if (args.TryGetValue("uninstall", out var uninstall) && uninstall.IsTrue)

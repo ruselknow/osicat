@@ -3,7 +3,7 @@ namespace Ruselknow.Osicat
     public class DocoptConfig 
     {
         public static string Usage = @"usage:
-    osicat install
+    osicat install [<dir>]
     osicat add <file> <action>
     osicat uninstall
     osicat (-h | --help)
