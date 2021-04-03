@@ -1,0 +1,32 @@
+name: build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  dotnet: 5.0.100
+  version: 1.7.1
+  key: ruselknow_osicat
+  organization: ruselknow
+  name: osicat
+
+jobs:
+  build:
+    runs-on: ${{ matrix.platform }}
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    name: build on ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup .Net
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.dotnet }}
+      - name: restore
+        run: dotnet restore
+      - name: build
+        run: dotnet build --no-restore
