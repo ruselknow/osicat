@@ -39,12 +39,10 @@ jobs:
       - name: install sonar-scanner
         run: dotnet tool install --global dotnet-sonarscanner
       - name: scanner begin
-        run: dotnet sonarscanner begin /k:"${{ env.sonar_project_key }}"  /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner begin /k:"${{ env.sonar_project_key }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       - name: scanner build
         run: dotnet build
       - name: scanner test
         run: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=../lcov
       - name: scanner end
         run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
